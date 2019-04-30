@@ -22,8 +22,8 @@ let benchmarks = config.servers.map(({ name, port }) => {
     markers: [
       { start: "domLoading", label: "load" },
       { start: "beforeVendor", label: "boot" },
-      { start: "willTransition", label: "transition" },
-      { start: "didTransition", label: "render" }
+      { start: "routeWillChange", label: "transition" },
+      { start: "routeDidChange", label: "render" }
     ],
     browser: browserOpts,
     runtimeStats: true

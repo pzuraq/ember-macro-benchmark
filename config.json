@@ -1,0 +1,22 @@
+{
+  "har": "archives/emberobserver.com.har",
+  "runCount": 40,
+  "cpuThrottleRate": 4,
+  "servers": [
+    {
+      "name": "ember-master",
+      "port": 8880,
+      "ember": "embers/ember-master.min.js"
+    },
+    {
+      "name": "ember-tracked",
+      "port": 8881,
+      "ember": "embers/ember-tracked.min.js"
+    },
+    {
+      "name": "ember-tracked-array-tracking-fix",
+      "port": 8882,
+      "ember": "embers/ember-tracked-array-tracking-fix.min.js"
+    }
+  ]
+}
