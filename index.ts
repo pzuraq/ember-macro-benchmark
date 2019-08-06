@@ -1,32 +1,34 @@
-import { InitialRenderBenchmark, Runner } from "chrome-tracing";
+import { InitialRenderBenchmark, Runner } from 'chrome-tracing';
 import * as networkEmulationConditions from 'network-emulation-conditions';
-import * as fs from "fs-extra";
-let browserOpts = process.env.CHROME_BIN ? {
-  type: "exact",
-  executablePath: process.env.CHROME_BIN
-} : {
-    type: "system"
-  };
+import * as fs from 'fs-extra';
+let browserOpts = process.env.CHROME_BIN
+  ? {
+      type: 'exact',
+      executablePath: process.env.CHROME_BIN,
+    }
+  : {
+      type: 'system',
+    };
 
 const config: {
-  runCount: number,
-  networkCondition: string,
-  cpuThrottleRate: number,
-  servers: Array<{ name: string, port: number, networkCondition: string }>;
-} = JSON.parse(fs.readFileSync("config.json", "utf8"));
+  runCount: number;
+  networkCondition: string;
+  cpuThrottleRate: number;
+  servers: Array<{ name: string; port: number; networkCondition: string }>;
+} = JSON.parse(fs.readFileSync('config.json', 'utf8'));
 
 let benchmarks = config.servers.map(({ name, port }) => {
   let options = {
     name,
-    url: `http://localhost:${port}/?perf.tracing`,
+    url: `http://localhost:${port}?perf.tracing`,
     markers: [
-      { start: "domLoading", label: "load" },
-      { start: "beforeVendor", label: "boot" },
-      { start: "routeWillChange", label: "transition" },
-      { start: "routeDidChange", label: "render" }
+      { start: 'domLoading', label: 'load' },
+      { start: 'beforeVendor', label: 'boot' },
+      { start: 'routeWillChange', label: 'transition' },
+      { start: 'routeDidChange', label: 'render' },
     ],
     browser: browserOpts,
-    runtimeStats: true
+    runtimeStats: true,
   };
 
   let networkConditions = networkEmulationConditions[config.networkCondition];
@@ -36,7 +38,7 @@ let benchmarks = config.servers.map(({ name, port }) => {
       offline: false,
       latency: networkConditions.latency,
       downloadThroughput: networkConditions.download,
-      uploadThroughput: networkConditions.upload
+      uploadThroughput: networkConditions.upload,
     };
   }
 
@@ -48,14 +50,14 @@ let benchmarks = config.servers.map(({ name, port }) => {
 });
 
 fs.emptyDir('./results')
-  .then(()=> {
+  .then(() => {
     let runner = new Runner(benchmarks);
     return runner.run(config.runCount);
   })
-  .then((results) => {
+  .then(results => {
     fs.writeFileSync('results/results.json', JSON.stringify(results, null, 2));
   })
-  .catch((err) => {
+  .catch(err => {
     console.error(err.stack);
     process.exit(1);
   });
