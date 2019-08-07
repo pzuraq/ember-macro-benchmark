@@ -20,12 +20,12 @@ const config: {
 let benchmarks = config.servers.map(({ name, port }) => {
   let options = {
     name,
-    url: `http://localhost:${port}?perf.tracing`,
+    url: `http://localhost:${port}/chat/privately-with/me?perf.tracing`,
     markers: [
       { start: 'domLoading', label: 'load' },
       { start: 'beforeVendor', label: 'boot' },
-      { start: 'routeWillChange', label: 'transition' },
-      { start: 'routeDidChange', label: 'render' },
+      { start: 'willTransition', label: 'transition' },
+      { start: 'didTransition', label: 'render' },
     ],
     browser: browserOpts,
     runtimeStats: true,

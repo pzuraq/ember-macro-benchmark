@@ -1,17 +1,27 @@
 {
-  "har": "archives/emberobserver.com.har",
+  "har": "archives/emberclear-chat.har",
   "runCount": 60,
   "cpuThrottleRate": 8,
   "servers": [
+    {
+      "name": "functional-tag-api-experiment",
+      "port": 8880,
+      "ember": "embers/ember-functional-tag-api-experiment.min.js"
+    },
     {
       "name": "functional-tag-api",
       "port": 8881,
       "ember": "embers/ember-functional-tag-api.min.js"
     },
     {
-      "name": "functional-tag-api-experiment",
+      "name": "monomorphic-tag",
+      "port": 8882,
+      "ember": "embers/ember-monomorphic-tag.min.js"
+    },
+    {
+      "name": "tracked-disabled",
       "port": 8883,
-      "ember": "embers/ember-functional-tag-api-experiment.min.js"
+      "ember": "embers/ember-tracked-disabled.min.js"
     }
   ]
 }
