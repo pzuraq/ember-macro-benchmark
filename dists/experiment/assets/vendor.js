@@ -4167,7 +4167,7 @@ case 11:return!0
 case 19:return null
 case 27:return
 default:return function(e){switch(7&e){case 0:return e>>3
-case 4:return-(e>>3)
+case 4:return-1
 default:throw(0,r.unreachable)()}}(e)}}(t)},n.reset=function(){this.inner.reset(),this.js.length=0},(0,t.createClass)(e,[{key:"length",get:function(){return this.inner.len()}}]),e}(),Xt=function(){function e(e,t){this.stack=e,this[h]=t}e.restore=function(e){for(var t=new Jt,r=0;r<e.length;r++)t.write(r,e[r])
 return new this(t,[0,-1,e.length-1,0])}
 var t=e.prototype
