@@ -24,11 +24,11 @@ let benchmarks = config.servers.map(({ name, port }) => {
     markers: [
       { start: 'domLoading', label: 'load' },
       { start: 'beforeVendor', label: 'boot' },
-      { start: 'routeWillChange', label: 'transition' },
-      { start: 'routeDidChange', label: 'render' },
+      { start: 'willTransition', label: 'transition' },
+      { start: 'didTransition', label: 'render' },
     ],
     browser: browserOpts,
-    runtimeStats: true,
+    runtimeStats: false,
   };
 
   let networkConditions = networkEmulationConditions[config.networkCondition];
